@@ -93,3 +93,25 @@ counters.forEach(counter => {
     };
     updateCounter();
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".stat-number");
+
+    counters.forEach(counter => {
+        const target = +counter.getAttribute("data-count");
+        let count = 0;
+
+        const increment = target / 100;
+
+        const updateCount = () => {
+            if (count < target) {
+                count += increment;
+                counter.textContent = Math.ceil(count);
+                requestAnimationFrame(updateCount);
+            } else {
+                counter.textContent = target;
+            }
+        };
+
+        updateCount();
+    });
+});
