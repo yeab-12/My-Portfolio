@@ -115,3 +115,21 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCount();
     });
 });
+
+
+emailjs.init('jCbag9FjxIyU3N-7i');
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    emailjs.sendForm('service_7u8mxfu', 'template_contact', this)
+    .then(function() {
+        alert('Message sent successfully!');
+        document.getElementById('contactForm').reset();
+    }, function(error) {
+        alert('Oops! Something went wrong...', error);
+        console.log(error);
+    });
+});
+
+
+
